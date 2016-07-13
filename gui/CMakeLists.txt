@@ -1,0 +1,13 @@
+PROJECT(GUI)
+
+AUX_SOURCE_DIRECTORY(. DIR_GUI_SRCS)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+find_package(Qt4 REQUIRED)
+INCLUDE(${QT_USE_FILE})	
+QT4_WRAP_UI(UISrcs gui.ui)
+QT4_WRAP_CPP(MOCSrcs gui.h)
+
+ADD_LIBRARY(${PROJECT_NAME} ${DIR_GUI_SRCS} ${UISrcs} ${MOCSrcs})
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
